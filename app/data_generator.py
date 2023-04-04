@@ -46,11 +46,37 @@ class Data_Generator:
                 other_item_weights.append(other_item_weight)
                 other_item_values.append(other_item_value)
             
+            info_list = []
+            for index in range(len(other_item_weights)):
+                info = {
+                    "weight": other_item_weights[index],
+                    "value": other_item_values[index],
+                    "bit": 0
+                }
+                info_list.append(info)
+            for index in range(len(solution["weights"])):
+                info = {
+                    "weight": solution["weights"][index],
+                    "value": solution["values"][index], 
+                    "bit": 1
+                    }
+                info_list.append(info)
+            random.shuffle(info_list)
+            
+            weights = []
+            values = []
+            solution_bitvector = []
+            
+            for info in info_list:
+                weights.append(info["weight"])
+                values.append(info["value"])
+                solution_bitvector.append(info["bit"])
+            
             single_data = {
-                "weights": other_item_weights + solution["weights"],
-                "values": other_item_values + solution["values"],
-                "solution_weights": solution["weights"],
-                "solution_values": solution["values"],
+                "capacity": sum(solution["weights"]),
+                "weights": weights,
+                "values": values,
+                "items_used": solution_bitvector,
                 "max_value": sum(solution["values"])
             }
             

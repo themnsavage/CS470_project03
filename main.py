@@ -1,4 +1,5 @@
 from app.data_extractor import Data_Extractor
+from app.data_generator import Data_Generator
 
 def main():
     file_path = 'data/data01.txt'
@@ -15,6 +16,9 @@ def main():
     json_extractor.print_data()
     print("multiple data manager data:")
     multiple_data_extractor.print_data()
+    
+    generator = Data_Generator()
+    generator.export_data_to_json()
     
     
 if __name__ == "__main__":

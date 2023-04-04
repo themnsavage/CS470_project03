@@ -1,5 +1,5 @@
 import copy
-class Manager:
+class Data_Manager:
     def __init__(self, file_path):
         self._file_path = file_path
         self._data = {

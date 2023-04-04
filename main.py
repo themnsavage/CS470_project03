@@ -1,16 +1,21 @@
-from app.data_manager import Data_Manager
+from app.data_extractor import Data_Extractor
 
 def main():
     file_path = 'data/data01.txt'
     json_file_path = 'data/data01.json'
+    multiple_data_path = 'data/multiple_data.json'
     
-    txt_manager = Data_Manager(file_path=file_path)
-    json_manager = Data_Manager(json_file_path=json_file_path)
+    txt_extractor = Data_Extractor(file_path=file_path)
+    json_extractor = Data_Extractor(json_file_path=json_file_path)
+    multiple_data_extractor = Data_Extractor(json_file_path=multiple_data_path)
     
     print("txt manager data:")
-    txt_manager.print_data()
+    txt_extractor.print_data()
     print("json manager data:")
-    json_manager.print_data()
+    json_extractor.print_data()
+    print("multiple data manager data:")
+    multiple_data_extractor.print_data()
+    
     
 if __name__ == "__main__":
     main()

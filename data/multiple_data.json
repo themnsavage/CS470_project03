@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "capacity": 15,
+            "weights": [2, 3, 5, 7],
+            "values": [8, 12, 15, 10]
+        },
+
+        {
+            "capacity": 20,
+            "weights": [3, 4, 5, 6],
+            "values": [9, 13, 14, 20]
+        },
+
+        {
+            "capacity": 25,
+            "weights": [2, 3, 5, 7],
+            "values": [8, 12, 15, 10]
+        },
+
+        {
+            "capacity": 30,
+            "weights": [5, 10, 15, 20],
+            "values": [10, 20, 25, 35]
+        }
+    ]
+}

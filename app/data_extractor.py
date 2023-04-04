@@ -1,6 +1,6 @@
 import copy
 import json
-class Data_Manager:
+class Data_Extractor:
     def __init__(self, file_path = '', json_file_path = ''):
         self._file_path = file_path
         self._json_file_path = json_file_path
@@ -36,6 +36,4 @@ class Data_Manager:
         return copy.deepcopy(self._data)
     
     def print_data(self):
-        path = self._file_path if self._file_path != '' else self._json_file_path
-        file_data = f"File Path: {path}\nCapacity: {self._data['capacity']}\nWeights: {self._data['weights']}\nValues: {self._data['values']}"
-        print(file_data)
+        print(json.dumps(self._data, indent=4))

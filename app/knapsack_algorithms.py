@@ -3,7 +3,20 @@ import copy
 import sys
 class Knapsack_Algorithms:
     def __init__(self, data=None):
-        self._data = data
+        if data == None:
+            data = {
+                    "capacity": None,
+                    "weights": None,
+                    "values": None,
+                    "solution":{
+                        "capacity": None,
+                        "items_used": None,
+                        "max_value": None
+                    }
+                }
+        else:
+            self._data = data
+        
         self._genetic_result = {
             "total_weight": None,
             "total_value": None,

@@ -72,8 +72,11 @@ class Data_Generator:
             "capacity": sum(solution["weights"]),
             "weights": weights,
             "values": values,
-            "items_used": solution_bitvector,
-            "max_value": sum(solution["values"])
+            "solution":{
+                "capacity": sum(solution["weights"]),
+                "items_used": solution_bitvector,
+                "max_value": sum(solution["values"])
+            }
         }
         self._data = single_data
         return single_data

@@ -1,6 +1,6 @@
 import random
 import copy
-class Knapsack:
+class Knapsack_Algorithms:
     def __init__(self, data):
         self._data = data
         self._genetic_result = {
@@ -13,7 +13,7 @@ class Knapsack:
     def get_genetic_result(self):
         return copy.deepcopy(self._genetic_result)
     
-    def genetic_algorithm(self, max_weight = 10, population_size = 10, mutation_probability = 0.2, generations = 10):
+    def genetic_algorithm(self, population_size = 10, mutation_probability = 0.2, generations = 10):
         population = self._generate_population(population_size)
         
         for _ in range(generations):

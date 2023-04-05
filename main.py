@@ -1,6 +1,6 @@
 from app.data_extractor import Data_Extractor
 from app.data_generator import Data_Generator
-from app.knapsack import Knapsack
+from app.knapsack_algorithms import Knapsack_Algorithms
 
 def main():
     file_path = 'data/data01.txt'
@@ -18,9 +18,9 @@ def main():
     print("multiple data manager data:")
     multiple_data_extractor.print_data()
     
-    algorithms = Knapsack(json_extractor.get_data())
+    algorithms = Knapsack_Algorithms(json_extractor.get_data())
     print("Genetic Result:")
-    print(algorithms.genetic_algorithm())
+    print(algorithms.genetic_algorithm(population_size=50, generations=1000))
     
     generator = Data_Generator()
     generator.export_data_to_json()

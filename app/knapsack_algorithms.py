@@ -20,19 +20,28 @@ class Knapsack_Algorithms:
         return copy.deepcopy(self._genetic_result)
     
     def genetic_algorithm(self, population_size = 10, mutation_probability = 0.2, generations = 10):
+        print("Running Genetic Algorithm:")
+        print("\t--Generate Population--")
         population = self._generate_population(population_size)
         
         for _ in range(generations):
+            print(f"\tGeneration({_}):")
+            print("\t\t--Selecting Two Parents--")
             parent_one, parent_two = self._select_chromosomes(population)
+            print("\t\t--Crossover Two Selected Parents And Creating Two Children--")
             child_one, child_two = self._crossover(parent_one, parent_two)
             
             if random.uniform(0, 1) < mutation_probability:
+                print("\t\t--Child One Mutate--")
                 child_one = self._mutate(child_one)
             if random.uniform(0, 1) < mutation_probability:
+                print("\t\t--Child Two Mutate--")
                 child_two = self._mutate(child_two)
             
+            print("\t\t--Add Children To Population--")
             population = [child_one, child_two] + population[2:]
         
+        print("\t--Get Best From Population--")
         best = self._get_best(population)
         
         total_weight = 0
@@ -114,7 +123,6 @@ class Knapsack_Algorithms:
         
         max_value = max(fitness_values)
         max_index = fitness_values.index(max_value)
-        
         return population[max_index]
 
     #brute force
@@ -122,9 +130,11 @@ class Knapsack_Algorithms:
         return copy.deepcopy(self._dynamic_result)
     
     def dynamic_programming(self):
+        print("Running Dynamic Programming Algorithm:")
         table = [[0 for w in range(self._data["capacity"]+1)]
                  for i in range(len(self._data["weights"])+1)]
         
+        print("\t--Building Table--")
         for i in range(len(self._data["weights"])+1):
             for w in range(self._data["capacity"]+1):
                 if i == 0 or w == 0:
@@ -135,9 +145,11 @@ class Knapsack_Algorithms:
                 else:
                     table[i][w] = table[i-1][w]
         
+        print("\t--Getting Total Value from Table--")
         result = table[len(self._data["weights"])][self._data["capacity"]]  
         self._dynamic_result["total_value"] = result
         
+        print("\t--Working Backwards to get Items used and Total Weight--")
         total_weight = 0
         items_used = [0 for i in range(len(self._data["weights"]))]
         w = self._data["capacity"]

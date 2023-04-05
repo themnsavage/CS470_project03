@@ -18,14 +18,14 @@ class Knapsack_Algorithms:
             self._data = data
         
         self._genetic_result = {
-            "total_weight": None,
-            "total_value": None,
-            "items_used": None
+            "capacity": None,
+            "item_used": None,
+            "max_value": None
         }
         self._dynamic_result = {
-            "total_weight": None,
-            "total_value": None,
-            "items_used": None
+            "capacity": None,
+            "item_used": None,
+            "max_value": None
         } 
 
     def set_data(self, data=None):
@@ -65,8 +65,8 @@ class Knapsack_Algorithms:
                 total_weight += self._data["weights"][index]
                 total_value += self._data["values"][index]
         
-        self._genetic_result["total_weight"] = total_weight
-        self._genetic_result["total_value"] = total_value
+        self._genetic_result["capacity"] = total_weight
+        self._genetic_result["max_value"] = total_value
         self._genetic_result["items_used"] = best
         
         return self.get_genetic_result()
@@ -176,7 +176,7 @@ class Knapsack_Algorithms:
         
         print("\t--Getting Total Value from Table--")
         result = table[len(self._data["weights"])][self._data["capacity"]]  
-        self._dynamic_result["total_value"] = result
+        self._dynamic_result["max_value"] = result
         
         print("\t--Working Backwards to get Items used and Total Weight--")
         total_weight = 0
@@ -194,7 +194,7 @@ class Knapsack_Algorithms:
                 result -= self._data["values"][i-1]
                 w -= self._data["weights"][i-1]
         
-        self._dynamic_result["total_weight"] = total_weight
+        self._dynamic_result["capacity"] = total_weight
         self._dynamic_result["items_used"] = items_used
         
         return self.get_dynamic_result()

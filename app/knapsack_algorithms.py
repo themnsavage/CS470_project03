@@ -7,6 +7,11 @@ class Knapsack_Algorithms:
             "total_weight": None,
             "total_value": None,
             "items_used": None
+        }
+        self._dynamic_result = {
+            "total_weight": None,
+            "total_value": None,
+            "items_used": None
         } 
     
     #heuristic algorithm
@@ -108,5 +113,45 @@ class Knapsack_Algorithms:
         return population[max_index]
 
     #brute force
+    def get_dynamic_result(self):
+        return copy.deepcopy(self._dynamic_result)
+    
     def dynamic_programming(self):
-        pass
+        table = [[0 for w in range(self._data["capacity"]+1)]
+                 for i in range(len(self._data["weights"])+1)]
+        
+        for i in range(len(self._data["weights"])+1):
+            for w in range(self._data["capacity"]+1):
+                if i == 0 or w == 0:
+                    table[i][w] = 0
+                elif self._data["weights"][i-1] <= w:
+                    table[i][w] = max(self._data["values"][i-1] + table[i -1][w - self._data["weights"][i-1]],
+                                      table[i-1][w])
+                else:
+                    table[i][w] = table[i-1][w]
+        
+        result = table[len(self._data["weights"])][self._data["capacity"]]  
+        self._dynamic_result["total_value"] = result
+        
+        total_weight = 0
+        items_used = [0 for i in range(len(self._data["weights"]))]
+        w = self._data["capacity"]
+        for i in range(len(self._data["weights"]), 0, -1):
+            if result <= 0:
+                break
+            
+            if result == table[i - 1] [w]:
+                continue
+            else:
+                total_weight += self._data["weights"][i-1]
+                items_used[i-1] = 1
+                result -= self._data["values"][i-1]
+                w -= self._data["weights"][i-1]
+        
+        self._dynamic_result["total_weight"] = total_weight
+        self._dynamic_result["items_used"] = items_used
+        
+        return self.get_dynamic_result()
+                
+            
+        

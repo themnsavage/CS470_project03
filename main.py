@@ -18,12 +18,12 @@ def main():
     print("multiple data manager data:")
     multiple_data_extractor.print_data()
     
-    algorithms = Knapsack_Algorithms(json_extractor.get_data())
-    print("Genetic Result:")
-    print(algorithms.genetic_algorithm(population_size=50, generations=1000))
-    
     generator = Data_Generator()
     generator.export_data_to_json()
+    algorithms = Knapsack_Algorithms(generator.get_data()["data"][75])
+    print("Genetic Result:")
+    print(algorithms.genetic_algorithm(population_size=500, generations=1000))
+    print(algorithms.dynamic_programming())
     
     
     

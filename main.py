@@ -4,12 +4,13 @@ from app.knapsack_algorithms import Knapsack_Algorithms
 
 def main():
     generator = Data_Generator()
-    generator.generate_single_data_set(max_items=1000)
-    
-    algorithms = Knapsack_Algorithms(generator.get_data())
-    print("Genetic Result:")
-    print(algorithms.genetic_algorithm(population_size=50, generations=50, mutation_probability=0.5))
-    print(algorithms.dynamic_programming())
+    generator.generate_multiple_data_set(max_items=50)
+    multi_data_set = generator.get_data()
+    algorithms = Knapsack_Algorithms()
+    for data_set in multi_data_set["data"]:
+        algorithms.set_data(data_set)
+        print(algorithms.genetic_algorithm(population_size=3000, generations=10, mutation_probability=0.05))
+        print(algorithms.dynamic_programming())
     
     
     

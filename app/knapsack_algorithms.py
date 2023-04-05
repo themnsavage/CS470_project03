@@ -2,7 +2,7 @@ import random
 import copy
 import sys
 class Knapsack_Algorithms:
-    def __init__(self, data):
+    def __init__(self, data=None):
         self._data = data
         self._genetic_result = {
             "total_weight": None,
@@ -14,16 +14,17 @@ class Knapsack_Algorithms:
             "total_value": None,
             "items_used": None
         } 
-    
+
+    def set_data(self, data=None):
+        self._data = data
+   
     #heuristic algorithm
     def get_genetic_result(self):
         return copy.deepcopy(self._genetic_result)
     
     def genetic_algorithm(self, population_size = 10, mutation_probability = 0.2, generations = 10):
         print("Running Genetic Algorithm:")
-        print("\t--Generate Population--")
-        population = self._generate_population(population_size)
-        
+        population = self._generate_good_start_population(population_size)
         for _ in range(generations):
             print(f"\tGeneration({_}):")
             print("\t\t--Selecting Two Parents--")
@@ -57,6 +58,21 @@ class Knapsack_Algorithms:
         
         return self.get_genetic_result()
     
+    def _generate_good_start_population(self, population_size):
+        def get_total_fitness_value(population):
+            fitness_values = []
+            for chromosome in population:
+                fitness_values.append(self._calculate_fitness(chromosome))
+            return sum(fitness_values)       
+                
+        print("\t--Generate Population--")
+        population = self._generate_population(population_size)
+        while(get_total_fitness_value(population) == 0):
+            print("\t--Generate Population--")
+            population = self._generate_population(population_size)
+        
+        return population
+        
     def _generate_population(self, size):
         population = []
         item_count = len(self._data["weights"])

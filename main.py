@@ -8,7 +8,7 @@ def main():
     
     algorithms = Knapsack_Algorithms(generator.get_data())
     print("Genetic Result:")
-    print(algorithms.genetic_algorithm(population_size=50, generations=100))
+    print(algorithms.genetic_algorithm(population_size=200, generations=200, mutation_probability=0.05))
     # print(algorithms.dynamic_programming())
     
     

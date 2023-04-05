@@ -1,5 +1,6 @@
 import random
 import copy
+import sys
 class Knapsack_Algorithms:
     def __init__(self, data):
         self._data = data
@@ -77,6 +78,10 @@ class Knapsack_Algorithms:
         #calculate fitness for all chromosomes
         for chromosomes in population:
             fitness_values.append(self._calculate_fitness(chromosomes))
+        
+        if sum(fitness_values) == 0: #population died
+            sys.exit("population from genetic algorithm died pls try again, maybe try different parameters(e.g. mutation probability)")   
+                 
         #calculate ration using lambda function
         fitness_values = [float(index)/sum(fitness_values) for index in fitness_values]
         #choose two random parents

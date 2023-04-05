@@ -1,11 +1,10 @@
 import random
 import json
 class Data_Generator:
-    def __init__(self, max_items=80, max_single_weight = 80, max_single_value = 80):
-        self._max_items = max_items
+    def __init__(self, max_single_weight = 80, max_single_value = 80):
         self._max_single_weight = max_single_weight
         self._max_single_value = max_single_value
-        self._data = self._generate_random_data()
+        self._data = None
     
     def _generate_random_solution(self, max_items):
         solution_item_count =random.randint(1, max_items)
@@ -31,57 +30,61 @@ class Data_Generator:
         
         return solution
         
+    def generate_single_data_set(self, max_items= 80):
+        solution = self._generate_random_solution(max_items)
+        other_item_weights = []
+        other_item_values = []
+        other_item_count = max_items - len(solution["weights"])
         
-    def _generate_random_data(self):
-        data = []
-        for problem_set_size in range(2, self._max_items):
-            solution = self._generate_random_solution(problem_set_size)
-            other_item_weights = []
-            other_item_values = []
-            other_item_count = problem_set_size - len(solution["weights"])
-            
-            for _ in range(other_item_count):
-                other_item_weight = random.randint(1, solution["max_weight"])
-                other_item_value = random.randint(1, solution["min_value"])
-                other_item_weights.append(other_item_weight)
-                other_item_values.append(other_item_value)
-            
-            info_list = []
-            for index in range(len(other_item_weights)):
-                info = {
-                    "weight": other_item_weights[index],
-                    "value": other_item_values[index],
-                    "bit": 0
-                }
-                info_list.append(info)
-            for index in range(len(solution["weights"])):
-                info = {
-                    "weight": solution["weights"][index],
-                    "value": solution["values"][index], 
-                    "bit": 1
-                    }
-                info_list.append(info)
-            random.shuffle(info_list)
-            
-            weights = []
-            values = []
-            solution_bitvector = []
-            
-            for info in info_list:
-                weights.append(info["weight"])
-                values.append(info["value"])
-                solution_bitvector.append(info["bit"])
-            
-            single_data = {
-                "capacity": sum(solution["weights"]),
-                "weights": weights,
-                "values": values,
-                "items_used": solution_bitvector,
-                "max_value": sum(solution["values"])
+        for _ in range(other_item_count):
+            other_item_weight = random.randint(1, solution["max_weight"])
+            other_item_value = random.randint(1, solution["min_value"])
+            other_item_weights.append(other_item_weight)
+            other_item_values.append(other_item_value)
+        
+        info_list = []
+        for index in range(len(other_item_weights)):
+            info = {
+                "weight": other_item_weights[index],
+                "value": other_item_values[index],
+                "bit": 0
             }
-            
-            data.append(single_data)
+            info_list.append(info)
+        for index in range(len(solution["weights"])):
+            info = {
+                "weight": solution["weights"][index],
+                "value": solution["values"][index], 
+                "bit": 1
+                }
+            info_list.append(info)
+        random.shuffle(info_list)
         
+        weights = []
+        values = []
+        solution_bitvector = []
+        
+        for info in info_list:
+            weights.append(info["weight"])
+            values.append(info["value"])
+            solution_bitvector.append(info["bit"])
+        
+        single_data = {
+            "capacity": sum(solution["weights"]),
+            "weights": weights,
+            "values": values,
+            "items_used": solution_bitvector,
+            "max_value": sum(solution["values"])
+        }
+        self._data = single_data
+        return single_data
+
+    def generate_multiple_data_set(self, max_items= 80):
+        data = []
+        for problem_set_size in range(2, max_items):
+            single_data_set = self.generate_single_data_set(problem_set_size)    
+            data.append(single_data_set)
+        
+        self._data = {"data": data}
         return {"data":data}
     
     def get_data(self):

@@ -16,7 +16,7 @@ class Data_Generator:
             "min_value": None
         }
         
-        for index in range(solution_item_count):
+        for _ in range(solution_item_count):
             item_weight = random.randint(1,self._max_single_weight) 
             item_value = random.randint(1,self._max_single_value)
             if solution["max_weight"] is None and solution["min_value"] is None:
@@ -40,7 +40,7 @@ class Data_Generator:
             other_item_values = []
             other_item_count = problem_set_size - len(solution["weights"])
             
-            for index in range(other_item_count):
+            for _ in range(other_item_count):
                 other_item_weight = random.randint(1, solution["max_weight"])
                 other_item_value = random.randint(1, solution["min_value"])
                 other_item_weights.append(other_item_weight)

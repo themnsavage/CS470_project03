@@ -34,12 +34,11 @@ class Knapsack_Algorithms:
         for _ in range(generations):
             print(f"\t--generation({_})")
             population = sorted(
-                population,
-                key=lambda chromosome: self._calculate_fitness(chromosome)
+                population, key=lambda chromosome: self._calculate_fitness(chromosome)
             )
-            next_generation = population[0:2]# save top two chromosome
-            
-            for j in range(int(len(population)/2) - 1):
+            next_generation = population[0:2]  # save top two chromosome
+
+            for j in range(int(len(population) / 2) - 1):
                 parent_one, parent_two = self._select_chromosomes(population)
                 child_one, child_two = self._crossover(parent_one, parent_two)
                 if random.uniform(0, 1) < mutation_probability:
@@ -96,7 +95,7 @@ class Knapsack_Algorithms:
         return random.choices(
             population=population,
             weights=[self._calculate_fitness(chromosome) for chromosome in population],
-            k=2
+            k=2,
         )
 
     def _crossover(self, parent_one, parent_two):

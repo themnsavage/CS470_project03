@@ -124,7 +124,7 @@ class Data_Generator:
         return self._data
 
     def export_multiple_data_set_with_solution_verify_by_dynamic_programming(
-        self, max_items, overall_time_out= None, single_set_time_out= None
+        self, max_items, overall_time_out=None, single_set_time_out=None
     ):
         data = self.generate_multiple_data_set_without_solution(max_items=max_items)
         analyzer = Algorithm_Analyzer()
@@ -133,7 +133,7 @@ class Data_Generator:
         for data_set_index, data_set in enumerate(data["data"]):
             print(f"Current data set: {data_set_index}")
             dynamic_solution = analyzer.run_dynamic_programming_algorithm(data_set)
-            
+
             run_time = dynamic_solution["run_time"]
             total_time += run_time
             if overall_time_out is not None and total_time >= overall_time_out:
@@ -142,13 +142,11 @@ class Data_Generator:
             if single_set_time_out is not None and run_time >= single_set_time_out:
                 self.export_data_to_json(file_path=file_path)
                 return
-                
+
             data_set["solution"] = dynamic_solution
-        
+
         self._data = data
-        self.export_data_to_json(
-            file_path=file_path
-        )
+        self.export_data_to_json(file_path=file_path)
 
     def get_data(self):
         return self._data

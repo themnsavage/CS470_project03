@@ -15,8 +15,8 @@ class Knapsack_Algorithms:
         else:
             self._data = data
 
-        self._genetic_result = {"capacity": None, "item_used": None, "max_value": None}
-        self._dynamic_result = {"capacity": None, "item_used": None, "max_value": None}
+        self._genetic_result = {"capacity": None, "items_used": None, "max_value": None}
+        self._dynamic_result = {"capacity": None, "items_used": None, "max_value": None}
 
     def set_data(self, data=None):
         self._data = data
@@ -31,7 +31,9 @@ class Knapsack_Algorithms:
         print("Running Genetic Algorithm:")
 
         if population_size is None:
-            population = self._generate_good_start_population(len(self._data["weights"])/4)
+            population = self._generate_good_start_population(
+                len(self._data["weights"]) / 4
+            )
         else:
             population = self._generate_population(population_size)
 

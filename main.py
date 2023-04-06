@@ -1,23 +1,13 @@
 from app.data_extractor import Data_Extractor
 from app.data_generator import Data_Generator
 from app.knapsack_algorithms import Knapsack_Algorithms
-from app.algorithm_analysis import Algorithm_Analysis
+from app.algorithm_analyzer import Algorithm_Analyzer
 
 
 def main():
     generator = Data_Generator()
-    generator.generate_single_data_set(max_items=1000)
-    single_data_set = generator.get_data()
-
-    analyzer = Algorithm_Analysis()
-    analyzer.set_test_data(single_data_set)
-
-    analyzer.set_test_data(None)
-    print("genetic solution data:")
-    print(analyzer.run_genetic_algorithm(data=single_data_set, mutation_probability=0.009, generations=1000))
-
-    print("dynamic solution data:")
-    print(analyzer.run_dynamic_programming_algorithm(data=single_data_set))
+    generator.generate_single_data_set(1500)
+    generator.export_multiple_data_set_with_solution_verify_by_dynamic_programming(100)
 
 
 if __name__ == "__main__":

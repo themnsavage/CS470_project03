@@ -2,7 +2,7 @@ import time
 from app.knapsack_algorithms import Knapsack_Algorithms
 
 
-class Algorithm_Analysis:
+class Algorithm_Analyzer:
     def __init__(self):
         self._algorithm = Knapsack_Algorithms()
         self._test_data = None
@@ -31,7 +31,7 @@ class Algorithm_Analysis:
         return {
             "run_time": run_time,
             "capacity": genetic_solution["capacity"],
-            "item_used": genetic_solution["item_used"],
+            "items_used": genetic_solution["items_used"],
             "max_value": genetic_solution["max_value"],
         }
 
@@ -46,6 +46,6 @@ class Algorithm_Analysis:
         return {
             "run_time": run_time,
             "capacity": dynamic_solution["capacity"],
-            "item_used": dynamic_solution["item_used"],
+            "items_used": dynamic_solution["items_used"],
             "max_value": dynamic_solution["max_value"],
         }

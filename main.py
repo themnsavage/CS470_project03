@@ -8,9 +8,13 @@ def main():
     extractor = Data_Extractor(json_file_path="data/dynamic_programming_data_set.json")
     extractor._extract_json_file_content()
     data = extractor.get_data()["data"][725]
+    print(data)
     
     algorithm = Knapsack_Algorithms(data=data)
-    print(algorithm.genetic_algorithm())
+    genetic_result = algorithm.genetic_algorithm()["max_value"]
+    best_value = data["solution"]["max_value"]
+    
+    print(f"accuracy ratio: {float(genetic_result/best_value)}")
 
 if __name__ == "__main__":
     main()

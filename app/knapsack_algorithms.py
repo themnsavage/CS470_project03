@@ -32,23 +32,24 @@ class Knapsack_Algorithms:
         population = self._generate_population(population_size)
 
         for _ in range(generations):
-            print(f"\tGeneration({_}):")
-            print("\t\t--Selecting Two Parents--")
-            parent_one, parent_two = self._select_chromosomes(population)
-            print("\t\t--Crossover Two Selected Parents And Creating Two Children--")
-            child_one, child_two = self._crossover(parent_one, parent_two)
+            print(f"\t--generation({_})")
+            population = sorted(
+                population,
+                key=lambda chromosome: self._calculate_fitness(chromosome)
+            )
+            next_generation = population[0:2]# save top two chromosome
+            
+            for j in range(int(len(population)/2) - 1):
+                parent_one, parent_two = self._select_chromosomes(population)
+                child_one, child_two = self._crossover(parent_one, parent_two)
+                if random.uniform(0, 1) < mutation_probability:
+                    child_one = self._mutate(child_one)
+                if random.uniform(0, 1) < mutation_probability:
+                    child_two = self._mutate(child_two)
+                next_generation += [child_one, child_two]
 
-            if random.uniform(0, 1) < mutation_probability:
-                print("\t\t--Child One Mutate--")
-                child_one = self._mutate(child_one)
-            if random.uniform(0, 1) < mutation_probability:
-                print("\t\t--Child Two Mutate--")
-                child_two = self._mutate(child_two)
-
-            print("\t\t--Add Children To Population--")
             population = [child_one, child_two] + population[2:]
 
-        print("\t--Get Best From Population--")
         best = self._get_best(population)
 
         total_weight = 0

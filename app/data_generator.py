@@ -1,6 +1,6 @@
 import random
 import json
-from app.knapsack_algorithms import Knapsack_Algorithms
+from app.algorithm_analyzer import Algorithm_Analyzer
 
 
 class Data_Generator:
@@ -124,17 +124,30 @@ class Data_Generator:
         return self._data
 
     def export_multiple_data_set_with_solution_verify_by_dynamic_programming(
-        self, max_items
+        self, max_items, overall_time_out= None, single_set_time_out= None
     ):
-        algorithm = Knapsack_Algorithms()
         data = self.generate_multiple_data_set_without_solution(max_items=max_items)
-        for data_set in data["data"]:
-            algorithm.set_data(data=data_set)
-            dynamic_solution = algorithm.dynamic_programming()
+        analyzer = Algorithm_Analyzer()
+        total_time = 0
+        file_path = "data/dynamic_programming_data_set.json"
+        for data_set_index, data_set in enumerate(data["data"]):
+            print(f"Current data set: {data_set_index}")
+            dynamic_solution = analyzer.run_dynamic_programming_algorithm(data_set)
+            
+            run_time = dynamic_solution["run_time"]
+            total_time += run_time
+            if overall_time_out is not None and total_time >= overall_time_out:
+                self.export_data_to_json(file_path=file_path)
+                return
+            if single_set_time_out is not None and run_time >= single_set_time_out:
+                self.export_data_to_json(file_path=file_path)
+                return
+                
             data_set["solution"] = dynamic_solution
+        
         self._data = data
         self.export_data_to_json(
-            file_path="data/generated_data_verify_by_dynamic_programming.json"
+            file_path=file_path
         )
 
     def get_data(self):

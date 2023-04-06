@@ -32,7 +32,7 @@ class Knapsack_Algorithms:
 
         if population_size is None:
             population = self._generate_good_start_population(
-                len(self._data["weights"]) / 4
+                int(len(self._data["weights"]) / 4)
             )
         else:
             population = self._generate_population(population_size)

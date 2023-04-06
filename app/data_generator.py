@@ -1,5 +1,6 @@
 import random
 import json
+from app.knapsack_algorithms import Knapsack_Algorithms
 
 
 class Data_Generator:
@@ -94,6 +95,47 @@ class Data_Generator:
 
         self._data = {"data": data}
         return {"data": data}
+
+    def generate_single_data_set_without_solution(self, max_items=80):
+        weights = []
+        values = []
+
+        for _ in range(max_items):
+            weights.append(random.randint(1, self._max_single_weight))
+            values.append(random.randint(1, self._max_single_value))
+
+        max_capacity = sum(weights)
+        min_capacity = min(weights)
+
+        capacity = random.randint(min_capacity, max_capacity)
+
+        self._data = {"capacity": capacity, "weights": weights, "values": values}
+        return self._data
+
+    def generate_multiple_data_set_without_solution(self, max_items=80):
+        multiple_data_sets = {"data": []}
+        for single_data_set_size in range(1, max_items + 1):
+            single_data_set = self.generate_single_data_set_without_solution(
+                max_items=single_data_set_size
+            )
+            multiple_data_sets["data"].append(single_data_set)
+
+        self._data = multiple_data_sets
+        return self._data
+
+    def export_multiple_data_set_with_solution_verify_by_dynamic_programming(
+        self, max_items
+    ):
+        algorithm = Knapsack_Algorithms()
+        data = self.generate_multiple_data_set_without_solution(max_items=max_items)
+        for data_set in data["data"]:
+            algorithm.set_data(data=data_set)
+            dynamic_solution = algorithm.dynamic_programming()
+            data_set["solution"] = dynamic_solution
+        self._data = data
+        self.export_data_to_json(
+            file_path="data/generated_data_verify_by_dynamic_programming.json"
+        )
 
     def get_data(self):
         return self._data

@@ -26,10 +26,15 @@ class Knapsack_Algorithms:
         return copy.deepcopy(self._genetic_result)
 
     def genetic_algorithm(
-        self, population_size=10, mutation_probability=0.2, generations=10
+        self, population_size=None, mutation_probability=0.2, generations=10
     ):
         print("Running Genetic Algorithm:")
-        population = self._generate_good_start_population(population_size)
+
+        if population_size is None:
+            population = self._generate_good_start_population(len(self._data["weights"])/4)
+        else:
+            population = self._generate_population(population_size)
+
         for _ in range(generations):
             print(f"\tGeneration({_}):")
             print("\t\t--Selecting Two Parents--")
@@ -75,6 +80,7 @@ class Knapsack_Algorithms:
         while get_total_fitness_value(population) == 0:
             print("\t--Generate Population--")
             population = self._generate_population(population_size)
+            population_size *= 2
 
         return population
 

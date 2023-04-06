@@ -14,7 +14,7 @@ def main():
 
     analyzer.set_test_data(None)
     print("genetic solution data:")
-    print(analyzer.run_genetic_algorithm(data=single_data_set, population_size=900, mutation_probability=0.3, generations=10))
+    print(analyzer.run_genetic_algorithm(data=single_data_set, mutation_probability=0.009, generations=1000))
 
     print("dynamic solution data:")
     print(analyzer.run_dynamic_programming_algorithm(data=single_data_set))

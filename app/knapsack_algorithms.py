@@ -26,16 +26,10 @@ class Knapsack_Algorithms:
         return copy.deepcopy(self._genetic_result)
 
     def genetic_algorithm(
-        self, population_size=None, mutation_probability=0.2, generations=10
+        self, population_size=10, mutation_probability=0.2, generations=10
     ):
         print("Running Genetic Algorithm:")
-
-        if population_size is None:
-            population = self._generate_good_start_population(
-                int(len(self._data["weights"]) / 4)
-            )
-        else:
-            population = self._generate_population(population_size)
+        population = self._generate_population(population_size)
 
         for _ in range(generations):
             print(f"\tGeneration({_}):")
@@ -70,22 +64,6 @@ class Knapsack_Algorithms:
 
         return self.get_genetic_result()
 
-    def _generate_good_start_population(self, population_size):
-        def get_total_fitness_value(population):
-            fitness_values = []
-            for chromosome in population:
-                fitness_values.append(self._calculate_fitness(chromosome))
-            return sum(fitness_values)
-
-        print("\t--Generate Population--")
-        population = self._generate_population(population_size)
-        while get_total_fitness_value(population) == 0:
-            print("\t--Generate Population--")
-            population = self._generate_population(population_size)
-            population_size *= 2
-
-        return population
-
     def _generate_population(self, size):
         population = []
         item_count = len(self._data["weights"])
@@ -114,25 +92,11 @@ class Knapsack_Algorithms:
             return total_value
 
     def _select_chromosomes(self, population):
-        fitness_values = []
-        # calculate fitness for all chromosomes
-        for chromosomes in population:
-            fitness_values.append(self._calculate_fitness(chromosomes))
-
-        if sum(fitness_values) == 0:  # population died
-            sys.exit(
-                "population from genetic algorithm died pls try again, maybe try different parameters(e.g. mutation probability)"
-            )
-
-        # calculate ration using lambda function
-        fitness_values = [
-            float(index) / sum(fitness_values) for index in fitness_values
-        ]
-        # choose two random parents
-        parent_one = random.choices(population, weights=fitness_values, k=1)[0]
-        parent_two = random.choices(population, weights=fitness_values, k=1)[0]
-
-        return parent_one, parent_two
+        return random.choices(
+            population=population,
+            weights=[self._calculate_fitness(chromosome) for chromosome in population],
+            k=2
+        )
 
     def _crossover(self, parent_one, parent_two):
         item_count = len(self._data["weights"])

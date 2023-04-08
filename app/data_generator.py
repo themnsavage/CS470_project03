@@ -19,7 +19,7 @@ class Data_Generator:
             values.append(random.randint(1, self._max_single_value))
 
         max_capacity = sum(weights)
-        min_capacity = min(weights)
+        min_capacity = int(sum(weights)/2)
 
         capacity = random.randint(min_capacity, max_capacity)
 

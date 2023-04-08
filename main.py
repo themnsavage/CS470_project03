@@ -7,10 +7,10 @@ from app.algorithm_analyzer import Algorithm_Analyzer
 def main():
     extractor = Data_Extractor(json_file_path="data/dynamic_programming_data_set.json")
     extractor._extract_json_file_content()
-    data = extractor.get_data()["data"][725]
+    data = Data_Generator().generate_single_data_set(max_items= 2000)
     
     algorithm = Algorithm_Analyzer()
-    genetic_result = algorithm.run_genetic_algorithm(data=data, population_size=4, generations=1500, mutation_probability=0.7)
+    genetic_result = algorithm.run_genetic_algorithm(data=data, population_size=5000, generations=10, mutation_probability=0.7)
     dynamic_result = algorithm.run_dynamic_programming_algorithm(data=data)
     
     best_value = dynamic_result["max_value"]

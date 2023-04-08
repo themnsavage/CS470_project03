@@ -10,15 +10,17 @@ def main():
     data = extractor.get_data()["data"][725]
     
     algorithm = Algorithm_Analyzer()
-    genetic_result = algorithm.run_genetic_algorithm(data=data, population_size=4, generations=1000, mutation_probability=0.7)
+    genetic_result = algorithm.run_genetic_algorithm(data=data, population_size=4, generations=1500, mutation_probability=0.7)
+    dynamic_result = algorithm.run_dynamic_programming_algorithm(data=data)
     
-    best_value = data["solution"]["max_value"]
+    best_value = dynamic_result["max_value"]
     genetic_value = genetic_result["max_value"]
     print(f"accuracy ratio: {float(genetic_value/best_value)}")
     
-    gentic_time = genetic_result["run_time"]
-    dynamic_time = data["solution"]["run_time"] 
-    print(f"is: {float(dynamic_time - gentic_time)}s faster")
+    genetic_time = genetic_result["run_time"]
+    dynamic_time = dynamic_result["run_time"] 
+    
+    print(f"is: {float(dynamic_time - genetic_time)}s faster")
     
 
 if __name__ == "__main__":

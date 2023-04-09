@@ -49,3 +49,4 @@ class Data_Extractor:
             for index in range(len(weights)):
                 line = f"{weights[index]} {values[index]}\n"
                 file.write(line)
+            file.write("$\n")

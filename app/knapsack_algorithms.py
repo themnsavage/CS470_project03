@@ -65,8 +65,24 @@ class Knapsack_Algorithms:
         return self.get_genetic_result()
 
     def _generate_population(self, size):
-        length_of_chromosome = len(self._data["weights"])
-        return[random.choices([0,1] ,k=length_of_chromosome) for _ in range(size)]
+        chromosome_size = len(self._data["weights"])
+        population = []
+        for _ in range(size):
+            chromosome = [0] * chromosome_size
+            random_indexes = random.sample(range(chromosome_size), chromosome_size)
+            current_weight = 0
+            print(f"\t--Creating chromosome{_}--")
+            for random_index in random_indexes:
+                current_weight += self._data["weights"][random_index]
+                chromosome[random_index] = 1
+                
+                if current_weight > self._data["capacity"]:
+                    chromosome[random_index] = 0
+                    break
+                
+            population.append(chromosome)
+        
+        return population                
 
     def _calculate_fitness(self, chromosome):
         total_weight = 0

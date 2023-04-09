@@ -9,7 +9,6 @@ class Data_Generator:
         self._max_single_value = max_single_value
         self._data = None
 
-
     def generate_single_data_set(self, max_items=80):
         weights = []
         values = []

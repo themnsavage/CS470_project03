@@ -75,14 +75,14 @@ class Knapsack_Algorithms:
             for random_index in random_indexes:
                 current_weight += self._data["weights"][random_index]
                 chromosome[random_index] = 1
-                
+
                 if current_weight > self._data["capacity"]:
                     chromosome[random_index] = 0
                     break
-                
+
             population.append(chromosome)
-        
-        return population                
+
+        return population
 
     def _calculate_fitness(self, chromosome):
         total_weight = 0

@@ -19,11 +19,11 @@ class Data_Extractor:
 
         for line in file_lines:
             if self._data["capacity"] == None:
-                self._data["capacity"] = float(line)
+                self._data["capacity"] = int(line)
             elif line != "$":
                 weight_and_value = line.split()
-                self._data["weights"].append(float(weight_and_value[0]))
-                self._data["values"].append(float(weight_and_value[1]))
+                self._data["weights"].append(int(weight_and_value[0]))
+                self._data["values"].append(int(weight_and_value[1]))
 
     def _extract_json_file_content(self):
         with open(self._json_file_path) as json_file_data:

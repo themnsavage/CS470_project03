@@ -1,3 +1,4 @@
+import json
 from app.data_extractor import Data_Extractor
 from app.data_generator import Data_Generator
 from app.knapsack_algorithms import Knapsack_Algorithms
@@ -5,23 +6,30 @@ from app.algorithm_analyzer import Algorithm_Analyzer
 
 
 def main():
-    extractor = Data_Extractor(json_file_path="data/dynamic_programming_data_set.json")
-    extractor._extract_json_file_content()
-    data = Data_Generator().generate_single_data_set(max_items= 1500)
+    data = None
+    option = input("Enter 0 for generated data or Enter 1 to read data from file: ")
+    if option == '0':
+        data_size = int(input("Enter data size(e.g. 1500): "))
+        data = Data_Generator().generate_single_data_set(max_items=data_size)
+    else:
+        file_path = input("Enter file path: ")
+        file_type = file_path.split('/')[-1].split('.')[-1]
+        if file_type == "json":
+            data = Data_Extractor(json_file_path=file_path).get_data()
+        else:
+            data = Data_Extractor(file_path=file_path).get_data()
     
-    algorithm = Algorithm_Analyzer()
-    genetic_result = algorithm.run_genetic_algorithm(data=data, population_size=5, generations=2000, mutation_probability=0.7)
-    dynamic_result = algorithm.run_dynamic_programming_algorithm(data=data)
+    population_size = int(input("Enter genetic alg. population size(e.g. 10): "))
+    mutations_probability = float(input("Enter genetic alg. mutation probability(e.g. 0.7): "))
+    generation = int(input("Enter genetic alg. numbers of generations(e.g. 1000): "))
     
-    best_value = dynamic_result["max_value"]
-    genetic_value = genetic_result["max_value"]
-    print(f"accuracy ratio: {float(genetic_value/best_value)}")
+    genetic_solution = Algorithm_Analyzer().run_genetic_algorithm(data=data, population_size=population_size, mutation_probability=mutations_probability, generations=generation)
+    print(f'genetic algorithm solution:\n{json.dumps(genetic_solution, indent=4)}')
     
-    genetic_time = genetic_result["run_time"]
-    dynamic_time = dynamic_result["run_time"] 
+    dynamic_solution = Algorithm_Analyzer().run_dynamic_programming_algorithm(data=data)
+    print(f'dynamic programming algorithm solution:\n{json.dumps(dynamic_solution, indent=4)}')
     
-    print(f"is: {float(dynamic_time - genetic_time)}s faster")
-    
+    print(f'genetic algorithm was {dynamic_solution["run_time"] - genetic_solution["run_time"]}s faster, with {genetic_solution["max_value"]/dynamic_solution["max_value"]} accuracy')
 
 if __name__ == "__main__":
     main()

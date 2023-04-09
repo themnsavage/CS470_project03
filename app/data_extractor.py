@@ -34,3 +34,18 @@ class Data_Extractor:
 
     def print_data(self):
         print(json.dumps(self._data, indent=4))
+
+    def convert_json(self, file_path=None):
+        self._json_file_path = file_path
+        self._extract_json_file_content()
+        data = self.get_data()
+
+        capacity = data["capacity"]
+        weights = data["weights"]
+        values = data["values"]
+
+        with open("data/knapsack_mnsavage.dat", "w") as file:
+            file.write(f"{capacity}\n")
+            for index in range(len(weights)):
+                line = f"{weights[index]} {values[index]}\n"
+                file.write(line)

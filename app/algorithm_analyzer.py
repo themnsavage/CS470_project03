@@ -109,7 +109,7 @@ class Algorithm_Analyzer:
         min_accuracy = 1.0
         index_min_accuracy = None
         for index, data_set in enumerate(data["data"]):
-            if (genetic_max_values[index] / dynamic_max_values[index]) < min_accuracy:
+            if (genetic_max_values[index] / dynamic_max_values[index]) < min_accuracy or index_min_accuracy is None:
                 min_accuracy = genetic_max_values[index] / dynamic_max_values[index]
                 index_min_accuracy = index
 

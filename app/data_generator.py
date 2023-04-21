@@ -16,15 +16,15 @@ class Data_Generator:
             weights.append(random.randint(1, self._max_single_weight))
             values.append(random.randint(1, self._max_single_value))
 
-        max_capacity = sum(weights)
+        max_capacity = sum(weights)-1
         min_capacity = int(min(weights))
 
-        capacity = random.randint(min_capacity, max_capacity)
+        capacity = int(max_capacity/2) #random.randint(min_capacity, max_capacity)
 
         self._data = {"capacity": capacity, "weights": weights, "values": values}
         return self._data
 
-    def generate_multiple_data_set(self, max_items=80):
+    def generate_multiple_data_set(self, max_items=400):
         multiple_data_sets = {"data": []}
         for single_data_set_size in range(5, max_items + 1, 50):
             single_data_set = self.generate_single_data_set(

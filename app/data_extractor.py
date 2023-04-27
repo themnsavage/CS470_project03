@@ -49,7 +49,7 @@ class Data_Extractor:
                 file.write(line)
             file.write("$\n")
     
-    def extract_three_sat_data(self, file_name = "data/input_files/reduce_3sat_to_knapsack.txt"):
+    def extract_three_sat_data(self, file_name = "data/input_reduction_files/reduce_3sat_to_knapsack.txt"):
         three_sat_data = []
         
         with open(file_name, "r") as three_sat_file:

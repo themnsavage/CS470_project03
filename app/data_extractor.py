@@ -50,3 +50,17 @@ class Data_Extractor:
                 line = f"{weights[index]} {values[index]}\n"
                 file.write(line)
             file.write("$\n")
+    
+    def extract_three_sat_data(self, file_name = "data/input_files/reduce_3sat_to_knapsack.txt"):
+        three_sat_data = []
+        
+        with open(file_name, "r") as three_sat_file:
+            lines = three_sat_file.readlines()
+        
+        for line in lines:
+            if line == "$":
+                break
+            else:
+                clause = [int(literal) for literal in line.split()]
+                three_sat_data.append(clause)
+        return three_sat_data

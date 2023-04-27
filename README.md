@@ -1,7 +1,7 @@
 # CS470_project03
 
 ## Description:
-Find solution of np-complete problem in this case 0-1 knapsack problem. Uses two algorithms which are dynamic programming algorithm(brute force) and genetic algorithm(heuristic).
+Find solution of np-complete problem in this case 0-1 knapsack problem. Using two algorithms which are dynamic programming algorithm(brute force) and genetic algorithm(heuristic). NP reduction to map problem to and from 0-1 knapsack problem.
 
 ## 0-1 knapsack problem:
 The 0-1 knapsack problem is a np problem where you are given a list of items(with values and weights) and a capacity which is the maximum weight you can carry but cannot go over. The goal is to used the list of items to get the highest possible value without going over the given capacity(Note: you must take a whole item, you cannot take a item partially, hence the 0-1 part in 0-1 knapsack problem).

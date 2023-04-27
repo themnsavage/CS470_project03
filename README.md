@@ -1,5 +1,8 @@
 # CS470_project03
 
+![image](https://user-images.githubusercontent.com/60998598/234996445-2dd3a444-62e7-47af-8d9e-9f6eb4a0fdda.png)
+
+
 ## Description:
 This project allow user to solve the NP problem 0-1 knapsack by using a brute force(dynamic programming) and heuristic algorithm(gentic algorithm). Also allowing user to NP reduce(mapping) 3sat to 0-1 knapsack and 0-1 knapsack to traveling sales man.
 

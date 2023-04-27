@@ -3,6 +3,9 @@
 ## Description:
 Find solution of np-complete problem in this case 0-1 knapsack problem. Uses two algorithms which are dynamic programming algorithm(brute force) and genetic algorithm(heuristic).
 
+## Brute Force:
+The brute force algorithm uses dynamic programming, which builds a nxm table where n is the number of values and where m is the numbers of weights from the 0-1 knapsack data. Using the table we can find the best possible value from table[n-1][m-1], also we can find the items that are used in table from working backwards from starting at table[n-1][m-1].
+
 ## setup:
 - have [python3](https://www.python.org/) and [pip](https://pip.pypa.io/en/stable/installation/) installed
 - have python libraries installed by running the `make setup` command in terminal.

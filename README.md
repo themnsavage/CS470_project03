@@ -6,6 +6,14 @@
 ## Description:
 This project allow user to solve a NP-complete problem, which is the 0-1 knapsack problem by using a brute force(dynamic programming) and heuristic algorithm(gentic algorithm). Also allowing user to NP reduce(mapping) 3sat to 0-1 knapsack and 0-1 knapsack to traveling sales man. The brute force algorithm will give the 100% correct answer, but can be extremely slow. Where the heuristic algorithm will not always give you the best solution, but will give you a good solution while being exponitially faster than the brute force method.
 
+graph of dynamic programming algorithm:  
+![image](https://user-images.githubusercontent.com/60998598/234999877-ba6689ff-2c45-439f-8cec-cb3a623469a8.png)
+
+graph of genetic algorithm:  
+![image](https://user-images.githubusercontent.com/60998598/234999764-2456f4af-0eff-45b0-9e3b-cb493882780f.png)  
+
+Observing the two graphs above we can see that the dynamic algorithm is exponitial and the genetic algorithm is linear.
+
 ## 0-1 knapsack problem:
 ![image](https://user-images.githubusercontent.com/60998598/234992912-b87e4310-10c3-4747-b3e8-2d315a1e6c9a.png)  
 

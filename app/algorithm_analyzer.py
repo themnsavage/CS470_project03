@@ -157,7 +157,7 @@ class Algorithm_Analyzer:
         my_line = np.linspace(1, max_x, int(max(y) + 1))
         plt.scatter(x, y, color="red")
         plt.plot(my_line, my_model(my_line))
-        plt.title("Genetic Algorithm")
+        plt.title("Dynamic Programming Algorithm")
         plt.xlabel("Data Size")
         plt.ylabel("Run Time")
 

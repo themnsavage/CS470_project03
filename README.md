@@ -47,6 +47,6 @@ The number yi corresponds to the positive occurrences of xi in the formula while
 ## How to use:
 - `make run` will ask for inputs to run algorithms from generated data or data from file, then outputs to console solutions from algorithms and run time and accuracy statistics.
 - `make analyze` will run algorithms with generated data and then save data in data directory and also graph the two algorithms.
-- `make reduction` will reduce the np data you put in the input files(`reduce_3sat_to_knapsack.txt` and `reduce_knapsack_to_traveling_salesman.txt`), then export the reduction np data into the output files(`knapsack_data_from_3sat.txt` and `traveling_salesman_data_from_knapsack.txt`).
+- `make reduction` will reduce the np data you put in the input reduction files(`reduce_3sat_to_knapsack.txt` and `reduce_knapsack_to_traveling_salesman.txt`), then export the reduction np data into the output reduction files(`knapsack_data_from_3sat.txt` and `traveling_salesman_data_from_knapsack.txt`).
 
 

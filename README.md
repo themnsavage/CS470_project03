@@ -3,6 +3,9 @@
 ## Description:
 Find solution of np-complete problem in this case 0-1 knapsack problem. Uses two algorithms which are dynamic programming algorithm(brute force) and genetic algorithm(heuristic).
 
+## 0-1 knapsack problem:
+The 0-1 knapsack problem is a np problem where you are given a list of items(with values and weights) and a capacity which is the maximum weight you can carry but cannot go over. The goal is to used the list of items to get the highest possible value without going over the given capacity(Note: you must take a whole item, you cannot take a item partially, hence the 0-1 part in 0-1 knapsack problem).
+
 ## Brute Force:
 The brute force algorithm uses dynamic programming, which builds a nxm table where n is the number of values and where m is the numbers of weights from the 0-1 knapsack data. Using the table we can find the best possible value from table[n-1][m-1], also we can find the items that are used in table from working backwards from starting at table[n-1][m-1].
 

@@ -18,7 +18,9 @@ class Data_Extractor:
             file_lines = file_data.readlines()
 
         for line in file_lines:
-            if self._data["capacity"] == None:
+            if "$" in line:
+                break
+            elif self._data["capacity"] == None:
                 self._data["capacity"] = int(line)
             elif line != "$":
                 weight_and_value = line.split()

@@ -18,6 +18,7 @@ def main():
             data = Data_Extractor(json_file_path=file_path).get_data()
         else:
             data = Data_Extractor(file_path=file_path).get_data()
+            print(data)
     
     population_size = int(input("Enter genetic alg. population size(e.g. 10): "))
     mutations_probability = float(input("Enter genetic alg. mutation probability(e.g. 0.7): "))

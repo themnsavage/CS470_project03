@@ -36,6 +36,7 @@ genetic algorith population, chromosome, gene, crossover:
 To map 3sat to knapsack we first reduce 3sat to subset-sum. Consider a 3CNF formula with variables x1,...,xn and clauses c1,...,cr. For each variable xi, we will have two numbers yi and zi in the list. For each clause cj, we will also have two numbers sj and tj. We define all of these numbers by specifying their base 10 representations. The construction is best explained by an example and a picture.  
 
 If the formula is (x1∨x2∨ -x3)∧(-x1∨x2∨-x3), then the base 10 representations of the numbers will look like this: 
+
 ![image](https://user-images.githubusercontent.com/60998598/234988970-a16ea5a1-f1ec-4778-aaf9-e5b057dbefa2.png)  
 
 The number yi corresponds to the positive occurrences of xi in the formula while the number zi corresponds to its negative occurrences. It should be clear how to generalize this construction to an arbitrary 3CNF formula. And the list of numbers can clearly be constructed in polynomial time. We claim that a subset of these numbers adds to exactly k if and only if the formula is satisfiable. A key point is that the sum of the numbers can be done column by column, independently, because carries will never occur. After this then we map subset-sum to knapsack by setting capcity to k from the table. Then creating items with value and weights from subset-sums values(knapsack values and weights will be the same). 

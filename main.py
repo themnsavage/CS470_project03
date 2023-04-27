@@ -12,7 +12,7 @@ def main():
         data_size = int(input("Enter data size(e.g. 1500): "))
         data = Data_Generator().generate_single_data_set(max_items=data_size)
     else:
-        file_path = input("Enter file path: ")
+        file_path = input("Enter file path(e.g. data/output_reduction_files/knapsack_data_from_3sat.txt): ")
         file_type = file_path.split('/')[-1].split('.')[-1]
         if file_type == "json":
             data = Data_Extractor(json_file_path=file_path).get_data()

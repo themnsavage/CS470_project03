@@ -4,7 +4,7 @@
 
 
 ## Description:
-This project allow user to solve the NP problem 0-1 knapsack by using a brute force(dynamic programming) and heuristic algorithm(gentic algorithm). Also allowing user to NP reduce(mapping) 3sat to 0-1 knapsack and 0-1 knapsack to traveling sales man.
+This project allow user to solve a NP-complete problem, which is the 0-1 knapsack problem by using a brute force(dynamic programming) and heuristic algorithm(gentic algorithm). Also allowing user to NP reduce(mapping) 3sat to 0-1 knapsack and 0-1 knapsack to traveling sales man.
 
 ## 0-1 knapsack problem:
 ![image](https://user-images.githubusercontent.com/60998598/234992912-b87e4310-10c3-4747-b3e8-2d315a1e6c9a.png)  

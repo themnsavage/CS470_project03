@@ -94,9 +94,9 @@ class Np_Reducer:
             list_of_literals (list): list of literals
             three_sat_data (list): 3sat data
         """
-        row_size = len(list_of_literals) + len(three_sat_data)
+        row_size = int(len(list_of_literals)/2) + len(three_sat_data)
 
-        for index in range(int(len(list_of_literals) / 2)):
+        for index in range(len(list_of_literals)):
             empty_row = [0] * row_size
             empty_row[index] = 1
             self._reduction_table.append(empty_row)
@@ -107,7 +107,7 @@ class Np_Reducer:
 
         for clause_index, clause in enumerate(three_sat_data):
             empty_row = [0] * row_size
-            empty_row[clause_index + len(list_of_literals)] = 1
+            empty_row[clause_index + int(len(list_of_literals)/2)] = 1
             self._reduction_table.append(empty_row)
             self._reduction_table.append(empty_row)
 
@@ -125,7 +125,7 @@ class Np_Reducer:
 
         for row_index, literal in enumerate(list_of_literals):
             for clause_index, clause in enumerate(three_sat_data):
-                column_index = clause_index + len(list_of_literals)
+                column_index = clause_index + int(len(list_of_literals)/2)
                 self._reduction_table[row_index][column_index] = self._is_clause_true(
                     literal, clause
                 )

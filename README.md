@@ -80,6 +80,17 @@ $
 Notes:  
 the first line specifies the capacity of the knapsack (15 in this case). Each subsequent line represents an item, with the weight and value separated by a space/tab  
 
+## 3sat file format:
+format for 3 sat problem  
+eg:  
+1 -2 3  
+-1 2 3  
+1 2 -3  
+-1 -2 -3  
+$  
+Notes:  
+Each line represents a clause, with the literals separated by spaces and terminated by a 0. Positive literals correspond to variables, and negative literals correspond to their negations.  
+
 ## Traveling salesman file format:
 format for a un/directed un/weighted graph  
 node node wt  

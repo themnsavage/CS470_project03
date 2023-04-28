@@ -68,6 +68,18 @@ get output from traveling salesman and the nodes used before the turning point(n
 - `make analyze` will run algorithms with generated data and then save data in data directory and also graph the two algorithms.
 - `make reduction` will reduce the np data you put in the input reduction files(`reduce_3sat_to_knapsack.txt` and `reduce_knapsack_to_traveling_salesman.txt`), then export the reduction np data into the output reduction files(`knapsack_data_from_3sat.txt` and `traveling_salesman_data_from_knapsack.txt`).
 
+## 0-1 knapsack file format:  
+format for knapsack (also subset sum, just repeat the weight):  
+eg:  
+15  
+2 8  
+3 12  
+5 15  
+7 10  
+$  
+Notes:  
+the first line specifies the capacity of the knapsack (15 in this case). Each subsequent line represents an item, with the weight and value separated by a space/tab  
+
 ## Traveling salesman file format:
 format for a un/directed un/weighted graph  
 node node wt  

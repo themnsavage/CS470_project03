@@ -68,6 +68,23 @@ get output from traveling salesman and the nodes used before the turning point(n
 - `make analyze` will run algorithms with generated data and then save data in data directory and also graph the two algorithms.
 - `make reduction` will reduce the np data you put in the input reduction files(`reduce_3sat_to_knapsack.txt` and `reduce_knapsack_to_traveling_salesman.txt`), then export the reduction np data into the output reduction files(`knapsack_data_from_3sat.txt` and `traveling_salesman_data_from_knapsack.txt`).
 
+## Traveling salesman file format:
+format for a un/directed un/weighted graph  
+node node wt  
+eg:  
+5  
+1 2 3  
+1 3 2  
+2 3 1  
+2 4 4  
+3 4 5  
+$  
+Notes:  
+First line will be number of nodes  
+Each line of the file represents an edge in the graph and consists of two vertex labels and a weight, separated by spaces or tabs  
+
+Each line represents an edge in the graph. The first two columns are the labels of the two vertices that the edge connects, and the third column is the weight of the edge. Note that if the graph is undirected, each edge is listed twice in the file (once with the two vertices in one order, and once with them in the other order)  
+
 ## Example ways to use project:
 - You can use `make run` to solve an example file you have by entering the command 1 and entering the file path
 - You can np reduce 3sat to knapsack by putting 3sat data in the input reduction file reduce_3sat_to_knapsack.txt then running the `make reduction` then you can run the output reduction file knapsack_data_from_3sat.txt, by running the `make run` command and entering the filepath(data/output_reduction_files/knapsack_data_from_3sat.txt).

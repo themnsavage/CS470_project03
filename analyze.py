@@ -3,7 +3,11 @@ from app.data_extractor import Data_Extractor
 
 
 def main():
+    """
+    Description: runs analysis on algorithms that run against 0-1 knapsack data
+    """
     Algorithm_Analyzer().analyze_data_sets(max_items=900)
+
 
 if __name__ == "__main__":
     main()

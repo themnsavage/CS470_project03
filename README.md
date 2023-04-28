@@ -71,3 +71,6 @@ get output from traveling salesman and the nodes used before the turning point(n
 ## Example ways to use project:
 - You can use `make run` to solve an example file you have by entering the command 1 and entering the file path
 - You can np reduce 3sat to knapsack by putting 3sat data in the input reduction file reduce_3sat_to_knapsack.txt then running the `make reduction` then you can run the output reduction file knapsack_data_from_3sat.txt, by running the `make run` command and entering the filepath(data/output_reduction_files/knapsack_data_from_3sat.txt).
+
+## How can the project be improve:
+Right now the genetic algorithm takes three parameters input from the user which are population size, mutation rate, and generations. Something to do in the future is to implement somthing like Rastrigin's function or some paramter tuning algorithm to automatically generate the three parameters the genectic algorithm uses. Instead of just asking the user to guess the best parameters to use for the genetic algorithm.

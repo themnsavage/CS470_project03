@@ -66,7 +66,7 @@ get output from traveling salesman and the nodes used before the turning point(n
 ## How to use:
 - `make run` will ask for inputs to run algorithms from generated data or data from file, then outputs to console solutions from algorithms and run time and accuracy statistics.
 - `make analyze` will run algorithms with generated data and then save data in data directory and also graph the two algorithms.
-- `make reduction` will reduce the np data you put in the input reduction files(`reduce_3sat_to_knapsack.txt` and `reduce_knapsack_to_traveling_salesman.txt`), then export the reduction np data into the output reduction files(`knapsack_data_from_3sat.txt` and `traveling_salesman_data_from_knapsack.txt`).
+- `make reduction` will reduce the np data you put in the input reduction files([reduce_3sat_to_knapsack.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/input_reduction_files/reduce_3sat_to_knapsack.txt) and [reduce_knapsack_to_traveling_salesman.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/input_reduction_files/reduce_knapsack_to_traveling_salesman.txt)), then export the reduction np data into the output reduction files([knapsack_data_from_3sat.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/output_reduction_files/knapsack_data_from_3sat.txt) and [traveling_salesman_data_from_knapsack.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/output_reduction_files/traveling_salesman_data_from_knapsack.txt)).
 
 ## File formats:
 ### 0-1 knapsack file format:  
@@ -111,7 +111,7 @@ Each line represents an edge in the graph. The first two columns are the labels 
 
 ## Example ways to use project:
 - You can use `make run` to solve an example file you have by entering the command 1 and entering the file path
-- You can np reduce 3sat to knapsack by putting 3sat data in the input reduction file reduce_3sat_to_knapsack.txt then running the `make reduction` then you can run the output reduction file knapsack_data_from_3sat.txt, by running the `make run` command and entering the filepath(data/output_reduction_files/knapsack_data_from_3sat.txt).
+- You can np reduce 3sat to knapsack by putting 3sat data in the input reduction file [reduce_3sat_to_knapsack.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/input_reduction_files/reduce_3sat_to_knapsack.txt) then running the `make reduction` then you can run the output reduction file [knapsack_data_from_3sat.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/output_reduction_files/knapsack_data_from_3sat.txt), by running the `make run` command and entering the filepath(data/output_reduction_files/knapsack_data_from_3sat.txt).
 
 ## How can the project be improve:
 Right now the genetic algorithm takes three parameters input from the user which are population size, mutation rate, and generations. Something to do in the future is to implement somthing like Rastrigin's function or some paramter tuning algorithm to automatically generate the three parameters the genectic algorithm uses. Instead of just asking the user to guess the best parameters to use for the genetic algorithm.

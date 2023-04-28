@@ -109,6 +109,65 @@ class Np_Reducer:
         subset_sum_data = self.three_sat_to_subset_sums(three_sat_data)
         knapsack_data = self.subset_sum_to_knapsack(subset_sum_data)
         return knapsack_data
-         
+    
+    def _get_connected_nodes_with_edge_weight(self, node, nodes, weights):
+        connected_nodes = []
+        connected__nodes_weights = []
+        
+        for node_index, node_value in enumerate(nodes):
+            if node < node_value:
+                connected_nodes.append(node_value)
+                connected__nodes_weights.append(weights[node_index])
+            elif node > node_value:
+                connected_nodes.append(node_value)
+                connected__nodes_weights.append(0)
+                
+        return connected_nodes, connected__nodes_weights
+    
+    def _create_traveling_salesman_graph(self, knapsack_data):
+        values = knapsack_data["values"]
+        weights = knapsack_data["weights"]
+        max_value = max(values)
+        table = []
+        
+        zero_value = []
+        zero_weight = []
+        for index, value in enumerate(values):
+            zero_value.append(value)
+            zero_weight.append(weights[index])
+        zero_node = {
+            0: {
+                "nodes": zero_value,
+                "weights": zero_weight
+            }    
+        }
+        table.append(zero_node)
+        
+        for value in values:
+            node_connected, weights_connected = self._get_connected_nodes_with_edge_weight(value, values, weights)
+            node_connected.insert(0,0)
+            weights_connected.insert(0,0)
+            node_connected.insert(len(values),max_value+1)
+            weights_connected.insert(len(values),0)
+            node = {
+                value: {
+                    "nodes":node_connected,
+                    "weights":weights_connected
+                }
+                    }
+            table.append(node) 
+
+        return table    
+
     def knapsack_to_traveling_salesman(self, knapsack_data):
-        pass
+        graph = self._create_traveling_salesman_graph(knapsack_data)
+        traveling_salesman_data = []
+        for node in graph:
+            for node_value, node_info in node.items():
+                for index, node_connected in enumerate(node_info["nodes"]):
+                    data = []
+                    data.append(node_value)
+                    data.append(node_connected)
+                    data.append(node_info["weights"][index])
+                    traveling_salesman_data.append(data)  
+        return traveling_salesman_data

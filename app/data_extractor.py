@@ -62,3 +62,16 @@ class Data_Extractor:
                 clause = [int(literal) for literal in line.split()]
                 three_sat_data.append(clause)
         return three_sat_data
+    
+    def export_traveling_salesman_data(self, traveling_salesman_data= None, file_path= "data/output_reduction_files/traveling_salesman_data_from_knapsack.txt"):
+        with open(file_path, "w") as file:
+            for connection in traveling_salesman_data:
+                line = ""
+                for data in connection:
+                    if line == "":
+                        line += f'{data}'
+                    else:
+                        line += f' {data}'
+                line += "\n"
+                file.write(line)
+            file.write("$\n")

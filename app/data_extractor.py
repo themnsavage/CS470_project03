@@ -36,8 +36,8 @@ class Data_Extractor:
 
     def print_data(self):
         print(json.dumps(self._data, indent=4))
-        
-    def convert_json(self, data= None, file_path= None):
+
+    def convert_json(self, data=None, file_path=None):
         capacity = data["capacity"]
         weights = data["weights"]
         values = data["values"]
@@ -48,13 +48,15 @@ class Data_Extractor:
                 line = f"{weights[index]} {values[index]}\n"
                 file.write(line)
             file.write("$\n")
-    
-    def extract_three_sat_data(self, file_name = "data/input_reduction_files/reduce_3sat_to_knapsack.txt"):
+
+    def extract_three_sat_data(
+        self, file_name="data/input_reduction_files/reduce_3sat_to_knapsack.txt"
+    ):
         three_sat_data = []
-        
+
         with open(file_name, "r") as three_sat_file:
             lines = three_sat_file.readlines()
-        
+
         for line in lines:
             if line == "$":
                 break
@@ -62,16 +64,20 @@ class Data_Extractor:
                 clause = [int(literal) for literal in line.split()]
                 three_sat_data.append(clause)
         return three_sat_data
-    
-    def export_traveling_salesman_data(self, traveling_salesman_data= None, file_path= "data/output_reduction_files/traveling_salesman_data_from_knapsack.txt"):
+
+    def export_traveling_salesman_data(
+        self,
+        traveling_salesman_data=None,
+        file_path="data/output_reduction_files/traveling_salesman_data_from_knapsack.txt",
+    ):
         with open(file_path, "w") as file:
             for connection in traveling_salesman_data:
                 line = ""
                 for data in connection:
                     if line == "":
-                        line += f'{data}'
+                        line += f"{data}"
                     else:
-                        line += f' {data}'
+                        line += f" {data}"
                 line += "\n"
                 file.write(line)
             file.write("$\n")

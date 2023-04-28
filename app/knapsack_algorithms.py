@@ -4,6 +4,10 @@ import sys
 
 
 class Knapsack_Algorithms:
+    """
+    Description: algorithms used to solve 0-1 knapsack problem
+    """
+
     def __init__(self, data=None):
         if data == None:
             data = {
@@ -19,15 +23,35 @@ class Knapsack_Algorithms:
         self._dynamic_result = {"capacity": None, "items_used": None, "max_value": None}
 
     def set_data(self, data=None):
+        """
+        Description: setter function
+        Args:
+            data (dictionary): set data for algorithms to run against
+        """
         self._data = data
 
     # heuristic algorithm
     def get_genetic_result(self):
+        """
+        Description: getter function
+        Returns:
+            dictionary: genetic algorithm solution
+        """
         return copy.deepcopy(self._genetic_result)
 
     def genetic_algorithm(
         self, population_size=10, mutation_probability=0.2, generations=10
     ):
+        """
+        Description: runs genetic algorithm
+        Args:
+            population_size (int): number of chromosome in generation
+            mutation_probability (float): the probability for a child chromosome to have a mutation
+            generations (int): the number of generation that will be run/looped
+
+        Returns:
+            dictionary: genetic algorithm solution
+        """
         print("Running Genetic Algorithm:")
         population = self._generate_population(population_size)
 
@@ -65,6 +89,14 @@ class Knapsack_Algorithms:
         return self.get_genetic_result()
 
     def _generate_population(self, size):
+        """
+        Description: generate initial population
+        Args:
+            size (int): the size of the population generated
+
+        Returns:
+            list: list of chromosome
+        """
         chromosome_size = len(self._data["weights"])
         population = []
         for _ in range(size):
@@ -85,6 +117,14 @@ class Knapsack_Algorithms:
         return population
 
     def _calculate_fitness(self, chromosome):
+        """
+        Description: calculate fitness of chromosome
+        Args:
+            chromosome (list/bit-vector): the chromosome to calculate fitness on
+
+        Returns:
+            int: fitness value of given chromosome
+        """
         total_weight = 0
         total_value = 0
         # calculate chromosome weight and value
@@ -101,6 +141,14 @@ class Knapsack_Algorithms:
             return total_value
 
     def _select_chromosomes(self, population):
+        """
+        Description: select chromosome from population(better fitness = higher chance to select)
+        Args:
+            population (list): list of chromosome
+
+        Returns:
+            list/bit-vector: chromosome that was selected from population
+        """
         return random.choices(
             population=population,
             weights=[self._calculate_fitness(chromosome) for chromosome in population],
@@ -108,6 +156,15 @@ class Knapsack_Algorithms:
         )
 
     def _crossover(self, parent_one, parent_two):
+        """
+        Description: create two new chromosome(children) from two given chromosomes(parents)
+        Args:
+            parent_one (list/bit-vector): chromosome use to crossover
+            parent_two (list/bit-vector): chromosome use to crossover
+
+        Returns:
+            lists/bit-vectors: return two new chromosome(children chromosome)
+        """
         item_count = len(self._data["weights"])
         crossover_point = random.randint(0, item_count - 1)
         child_one = parent_one[0:crossover_point] + parent_two[crossover_point:]
@@ -116,6 +173,14 @@ class Knapsack_Algorithms:
         return child_one, child_two
 
     def _mutate(self, chromosome):
+        """
+        Description: randomly reverse bit-vector value(0 or 1)
+        Args:
+            chromosome (list/bit-vector): given chromosome to do mutation on
+
+        Returns:
+            list/bit-vector: chromosome with mutation
+        """
         item_count = len(self._data["weights"])
 
         mutation_point = random.randint(0, item_count - 1)
@@ -124,6 +189,14 @@ class Knapsack_Algorithms:
         return chromosome
 
     def _get_best(self, population):
+        """
+        Description: get the best chromosome from population based of fitness values
+        Args:
+            population (list): list of chromosome to search through
+
+        Returns:
+            list/bit-vector: chromosome with highest fitness value
+        """
         fitness_values = []
 
         for chromosome in population:
@@ -135,9 +208,19 @@ class Knapsack_Algorithms:
 
     # brute force
     def get_dynamic_result(self):
+        """
+        Description: getter function
+        Returns:
+            dictionary: dynamic programming algorithm solution
+        """
         return copy.deepcopy(self._dynamic_result)
 
     def dynamic_programming(self):
+        """
+        Description: run dynamic programming algorithm
+        Returns:
+            dictionary: dynamic programming solution
+        """
         print("Running Dynamic Programming Algorithm:")
         table = [
             [0 for w in range(self._data["capacity"] + 1)]

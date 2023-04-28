@@ -6,20 +6,45 @@ from app.data_generator import Data_Generator
 
 
 class Algorithm_Analyzer:
+    """
+    Description: use to analyze algorithms used to solve 0-1 knapsack problem
+    """
+
     def __init__(self):
         self._algorithm = Knapsack_Algorithms()
         self._test_data = None
         self._solution_data = None
 
     def set_test_data(self, test_data):
+        """
+        Description: setter function
+        Args:
+            test_data (dictionary): data used to set private variable _test_data
+        """
         self._test_data = test_data
 
     def get_test_data(self):
+        """
+        Description: getter function
+        Returns:
+            dictionary: return private _test_data variable
+        """
         return self._test_data
 
     def run_genetic_algorithm(
         self, data=None, population_size=10, mutation_probability=0.2, generations=10
     ):
+        """
+        Description: runs genetic algorithm and return solution and analysis data
+        Args:
+            data (dictionary): knapsack data to run genetic algorithm against
+            population_size (int): genetic algorithm population size parameter
+            mutation_probability (float): genetic algorithm mutation probability parameter
+            generations (int): number of generation the genetic algorithm will run
+
+        Returns:
+            dictionary: genetic algorithm run time and solution
+        """
         if data is not None:
             self._algorithm.set_data(data)
 
@@ -39,6 +64,14 @@ class Algorithm_Analyzer:
         }
 
     def run_dynamic_programming_algorithm(self, data=None):
+        """
+        Description: runs genetic algorithm and return solution and analysis data
+        Args:
+            data (dictionary): knapsack data to run dynamic programming algorithm against
+
+        Returns:
+            dictionary: dynamic algorithm solution and run time
+        """
         if data is not None:
             self._algorithm.set_data(data)
 
@@ -60,6 +93,14 @@ class Algorithm_Analyzer:
         mutation_probability=0.7,
         generations=1200,
     ):
+        """
+        Description: runs both algorithms(genetic and dynamic programming) and graphs data
+        Args:
+            max_items (int): genetic algorithm parameter
+            population_size (int): genetic algorithm parameter
+            mutation_probability (float): genetic algorithm parameter
+            generations (int): genetic algorithm parameter
+        """
         data = Data_Generator().generate_multiple_data_set(max_items=max_items)
         genetic_solutions = []
         dynamic_solutions = []
@@ -87,6 +128,13 @@ class Algorithm_Analyzer:
         )
 
     def _graph_data(self, data=None, genetic_solution=None, dynamic_solution=None):
+        """
+        Description: graphs both algorithms
+        Args:
+            data (dictionary): 0-1 knapsack data used
+            genetic_solution (dictionary): genetic algorithm solution from running data
+            dynamic_solution (dictionary): dynamic algorithm solution from running data
+        """
         # data for plots
         data_set_sizes = []
         genetic_run_times = []

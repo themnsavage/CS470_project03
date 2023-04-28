@@ -32,7 +32,7 @@ The Heuristic algorithms is a genetic algorithm that creates an populations of c
 genetic algorith population, chromosome, gene, crossover:  
 ![image](https://user-images.githubusercontent.com/60998598/234992289-e7063a6e-7369-440e-904f-decd8d6886e7.png)
 
-## 3sat to knapsack
+## 3sat to 0-1 knapsack
 To map 3sat to knapsack we first reduce 3sat to subset-sum. Consider a 3CNF formula with variables x1,...,xn and clauses c1,...,cr. For each variable xi, we will have two numbers yi and zi in the list. For each clause cj, we will also have two numbers sj and tj. We define all of these numbers by specifying their base 10 representations. The construction is best explained by an example and a picture.  
 
 If the formula is (x1∨x2∨ -x3)∧(-x1∨x2∨-x3), then the base 10 representations of the numbers will look like this: 
@@ -40,6 +40,22 @@ If the formula is (x1∨x2∨ -x3)∧(-x1∨x2∨-x3), then the base 10 represen
 ![image](https://user-images.githubusercontent.com/60998598/234988970-a16ea5a1-f1ec-4778-aaf9-e5b057dbefa2.png)  
 
 The number yi corresponds to the positive occurrences of xi in the formula while the number zi corresponds to its negative occurrences. It should be clear how to generalize this construction to an arbitrary 3CNF formula. And the list of numbers can clearly be constructed in polynomial time. We claim that a subset of these numbers adds to exactly k if and only if the formula is satisfiable. A key point is that the sum of the numbers can be done column by column, independently, because carries will never occur. After this then we map subset-sum to knapsack by setting capcity to k from the table. Then creating items with value and weights from subset-sums values(knapsack values and weights will be the same). 
+
+## 0-1 knapsack to traveling salesman:
+Step one create a Node for every knapsack element like this:  
+![image](https://user-images.githubusercontent.com/60998598/235017473-50385df9-23c1-4928-b2c0-f9cf85f9b1b2.png)
+
+step two add node 0 as home and add node n+1 as the turning point like this:  
+![image](https://user-images.githubusercontent.com/60998598/235017625-3c780bb6-d7a7-49b5-aa29-2c61499b5fb4.png)
+
+Step three create forward edges from smaller to bigger nodes with the edge being the weight of the node it is point to like this:  
+![image](https://user-images.githubusercontent.com/60998598/235017786-1860bca0-a4cf-4138-9ce4-571dbd596c1f.png)
+
+Step four draw backward edges from bigger to smaller and set these edges weight to zero like this:
+![image](https://user-images.githubusercontent.com/60998598/235017961-c77077e0-e28c-4992-b49c-68e3b720683a.png)
+
+get output from traveling salesman and the nodes used before the turning point(n+1 node) will be the knapsack solution:
+![image](https://user-images.githubusercontent.com/60998598/235018105-3cb45ec1-bde0-46e9-adac-edc661e8ecb0.png)
 
 ## setup:
 - have [python3](https://www.python.org/) and [pip](https://pip.pypa.io/en/stable/installation/) installed

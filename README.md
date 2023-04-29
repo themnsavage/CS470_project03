@@ -12,7 +12,7 @@ graph of dynamic programming algorithm:
 graph of genetic algorithm:  
 ![image](https://user-images.githubusercontent.com/60998598/234999764-2456f4af-0eff-45b0-9e3b-cb493882780f.png)  
 
-Observing the two graphs above we can see that the dynamic algorithm is exponitial and the genetic algorithm is linear.
+Observing the two graphs above we can see that the dynamic algorithm is exponitial and the genetic algorithm is polynomial.
 
 ## 0-1 knapsack problem:
 ![image](https://user-images.githubusercontent.com/60998598/234992912-b87e4310-10c3-4747-b3e8-2d315a1e6c9a.png)  

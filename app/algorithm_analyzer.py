@@ -88,7 +88,7 @@ class Algorithm_Analyzer:
 
     def analyze_data_sets(
         self,
-        max_items=1000,
+        data=None,
         population_size=5,
         mutation_probability=0.7,
         generations=1200,
@@ -101,7 +101,6 @@ class Algorithm_Analyzer:
             mutation_probability (float): genetic algorithm parameter
             generations (int): genetic algorithm parameter
         """
-        data = Data_Generator().generate_multiple_data_set(max_items=max_items)
         genetic_solutions = []
         dynamic_solutions = []
 
@@ -118,8 +117,6 @@ class Algorithm_Analyzer:
             dynamic_solutions.append(
                 self.run_dynamic_programming_algorithm(data=data_set)
             )
-
-        Data_Generator().export_data_to_json(data=data)
 
         self._graph_data(
             data=data,
@@ -176,13 +173,7 @@ class Algorithm_Analyzer:
             index_min_accuracy
         ]["items_used"]
 
-        Data_Generator().export_data_to_json(
-            data=data["data"][index_min_accuracy], file_path="data/worst_accuracy.json"
-        )
-
-        # graphing plots
-        max_x = data_set_sizes[-1]
-
+        # graphing plot
         x = data_set_sizes
         y = genetic_run_times
         n = accuracies
@@ -190,7 +181,7 @@ class Algorithm_Analyzer:
         fig, ax = plt.subplots()
 
         my_model = np.poly1d(np.polyfit(x, y, 3))
-        my_line = np.linspace(1, max_x, int(max(y) + 1))
+        my_line = np.linspace(1, int(max(x)+1), int(max(y) + 1))
         ax.scatter(x, y, color="green")
         for i, txt in enumerate(n):
             ax.annotate(txt, (x[i], y[i]))
@@ -204,7 +195,7 @@ class Algorithm_Analyzer:
         x = data_set_sizes
         y = dynamic_run_times
         my_model = np.poly1d(np.polyfit(x, y, 3))
-        my_line = np.linspace(1, max_x, int(max(y) + 1))
+        my_line = np.linspace(1, int(max(x)), int(max(y) + 1))
         plt.scatter(x, y, color="red")
         plt.plot(my_line, my_model(my_line))
         plt.title("Dynamic Programming Algorithm")

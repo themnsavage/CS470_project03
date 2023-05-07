@@ -1,14 +1,17 @@
-run:
-	python3 main.py
+APP_NAME = cs470_project
 
+build:
+	docker build -t $(APP_NAME) .
+run:
+	docker run -i -t $(APP_NAME) python3 main.py
 analyze:
-	python3 analyze.py
+	docker run -i -t $(APP_NAME) python3 analyze.py
 
 reduction:
-	python3 reduction.py
+	docker run -t $(APP_NAME) python3 reduction.py
 
 generate:
-	python3 generate.py
-	
-setup:
-	pip3 install -r requirements.txt
+	docker run -t $(APP_NAME) python3 generate.py
+
+clean:
+	docker rmi -f $(APP_NAME)

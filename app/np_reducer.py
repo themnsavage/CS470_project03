@@ -98,7 +98,7 @@ class Np_Reducer:
         for index, literal in enumerate(list_of_literals):
             if literal < 0:
                 literal *= -1
-            
+
             i = self._single_literals.index(literal)
             empty_row = [0] * row_size
             empty_row[i] = 1

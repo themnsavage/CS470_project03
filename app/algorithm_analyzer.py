@@ -118,10 +118,10 @@ class Algorithm_Analyzer:
                 self.run_dynamic_programming_algorithm(data=data_set)
             )
 
-        return{
-            "data":data,
-            "genetic_solution":genetic_solutions,
-            "dynamic_solution":dynamic_solutions,
+        return {
+            "data": data,
+            "genetic_solution": genetic_solutions,
+            "dynamic_solution": dynamic_solutions,
         }
 
     def graph_data(self, data=None, genetic_solution=None, dynamic_solution=None):
@@ -181,7 +181,7 @@ class Algorithm_Analyzer:
         fig, ax = plt.subplots()
 
         my_model = np.poly1d(np.polyfit(x, y, 3))
-        my_line = np.linspace(1, int(max(x)+1), int(max(y) + 1))
+        my_line = np.linspace(1, int(max(x) + 1), int(max(y) + 1))
         ax.scatter(x, y, color="green")
         for i, txt in enumerate(n):
             ax.annotate(txt, (x[i], y[i]))

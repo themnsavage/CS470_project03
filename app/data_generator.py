@@ -55,6 +55,26 @@ class Data_Generator:
         self._data = multiple_data_sets
         return self._data
 
+    def generate_multiple_random_data_set(self, data_set_size=400, max_items=400):
+        """
+        Description: generates multiple datasets of 0-1 knapsack
+        Args:
+            data_set_size (int): number of generated data sets
+            max_items (int): numbers of items
+        Returns:
+            list: multiple 0-1 knapsack datasets
+        """
+        multiple_data_sets = {"data": []}
+        for _ in range(0, data_set_size):
+            single_data_set_size = random.randint(5, max_items)
+            single_data_set = self.generate_single_data_set(
+                max_items=single_data_set_size
+            )
+            multiple_data_sets["data"].append(single_data_set)
+
+        self._data = multiple_data_sets
+        return self._data
+
     def get_data(self):
         """
         Description: getter function

@@ -65,8 +65,9 @@ get output from traveling salesman and the nodes used before the turning point(n
 
 ## How to use:
 - `make run` will ask for inputs to run algorithms from generated data or data from file, then outputs to console solutions from algorithms and run time and accuracy statistics.
-- `make analyze` will run algorithms with generated data and then save data in data directory and also graph the two algorithms.
+- `make analyze` will run algorithms with generated data then graph the two algorithms based on data size and run time.
 - `make reduction` will reduce the np data you put in the input reduction files([reduce_3sat_to_knapsack.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/input_reduction_files/reduce_3sat_to_knapsack.txt) and [reduce_knapsack_to_traveling_salesman.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/input_reduction_files/reduce_knapsack_to_traveling_salesman.txt)), then export the reduction np data into the output reduction files([knapsack_data_from_3sat.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/output_reduction_files/knapsack_data_from_3sat.txt) and [traveling_salesman_data_from_knapsack.txt](https://github.com/themnsavage/CS470_project03/blob/main/data/output_reduction_files/traveling_salesman_data_from_knapsack.txt)).
+- `make generate` will generated data and save data in generated_data folder
 
 ## File formats:
 ### 0-1 knapsack file format:  

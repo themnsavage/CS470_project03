@@ -6,6 +6,9 @@ analyze:
 
 reduction:
 	python3 reduction.py
+
+generate:
+	python3 generate.py
 	
 setup:
 	pip3 install -r requirements.txt

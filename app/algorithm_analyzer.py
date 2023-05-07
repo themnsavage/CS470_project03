@@ -91,7 +91,7 @@ class Algorithm_Analyzer:
         data=None,
         population_size=5,
         mutation_probability=0.7,
-        generations=1200,
+        generations=1000,
     ):
         """
         Description: runs both algorithms(genetic and dynamic programming) and graphs data
@@ -118,13 +118,13 @@ class Algorithm_Analyzer:
                 self.run_dynamic_programming_algorithm(data=data_set)
             )
 
-        self._graph_data(
-            data=data,
-            genetic_solution=genetic_solutions,
-            dynamic_solution=dynamic_solutions,
-        )
+        return{
+            "data":data,
+            "genetic_solution":genetic_solutions,
+            "dynamic_solution":dynamic_solutions,
+        }
 
-    def _graph_data(self, data=None, genetic_solution=None, dynamic_solution=None):
+    def graph_data(self, data=None, genetic_solution=None, dynamic_solution=None):
         """
         Description: graphs both algorithms
         Args:
